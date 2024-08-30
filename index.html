@@ -20,6 +20,19 @@
             }
         }
         //console.log(getComputerChoice());
+        function getHumanChoice() {
+            let choice = prompt("Rock, paper, or scissors?");
+            //console.log("Prompt took in the following input: " + choice + " of type " + (typeof choice));
+            choice = choice.toLowerCase();
+            //console.log("choice now looks like this: " + choice);
+            if (choice == "rock" || choice == "paper" || choice == "scissors") {
+                //console.log("Now returning your choice, supposedly... which is : " + choice);
+                return choice;
+            }
+            alert("You misspelled something. Please try again.");
+            return getHumanChoice();
+        }
+        console.log(getHumanChoice());
     </script>
 </body>
 </html>
