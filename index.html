@@ -11,7 +11,6 @@
 
         function getComputerChoice() {
             let randomNum = Math.floor(Math.random() * 100);
-            //console.log("For debugging: the number I got was " + randomNum + " , by the way.");
             if (randomNum <= 33) {
                 return "rock";
             } else if (randomNum <= 66) {
@@ -20,21 +19,15 @@
                 return "scissors";
             }
         }
-        //console.log(getComputerChoice());
 
         function getHumanChoice() {
-            let choice = prompt("Rock, paper, or scissors?");
-            //console.log("Prompt took in the following input: " + choice + " of type " + (typeof choice));
-            choice = choice.toLowerCase();
-            //console.log("choice now looks like this: " + choice);
+            let choice = prompt("Rock, paper, or scissors?").toLowerCase();
             if (choice == "rock" || choice == "paper" || choice == "scissors") {
-                //console.log("Now returning your choice, supposedly... which is : " + choice);
                 return choice;
             }
             alert("You misspelled something. Please try again.");
             return getHumanChoice();
         }
-        //console.log(getHumanChoice());
 
 
         function playGame() {
