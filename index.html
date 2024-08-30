@@ -9,7 +9,14 @@
     <script>
         let humanScore = 0;
         let computerScore = 0;
-        
+
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+
+        console.log("Current score: You: " + humanScore + " CPU: " + computerScore);
+
         console.log("Hello World");
         function getComputerChoice() {
             let randomNum = Math.floor(Math.random() * 100);
@@ -23,6 +30,7 @@
             }
         }
         //console.log(getComputerChoice());
+
         function getHumanChoice() {
             let choice = prompt("Rock, paper, or scissors?");
             //console.log("Prompt took in the following input: " + choice + " of type " + (typeof choice));
@@ -36,6 +44,26 @@
             return getHumanChoice();
         }
         //console.log(getHumanChoice());
+
+        function playRound(humanChoice, computerChoice) {
+            console.log("You picked " + humanChoice + ".");
+            console.log("The computer randomly picked " + computerChoice + ".");
+            if ((humanChoice === "rock" && computerChoice === "rock")
+            || (humanChoice === "paper" && computerChoice === "paper")
+            || (humanChoice === "scissors" && computerChoice === "scissors")) {
+                console.log("It's a tie, since " + humanChoice + " and " + computerChoice + " are the same.");
+            } else if ((humanChoice === "rock" && computerChoice === "paper")
+            || (humanChoice === "paper" && computerChoice === "scissors")
+            || (humanChoice === "scissors" && computerChoice === "rock")) {
+                console.log("You lost, because " + computerChoice + " beats " + humanChoice + ".");
+                computerScore++;
+            } else {
+                console.log("You win, because " + humanChoice + " beats " + computerChoice + "!");
+                humanScore++;
+            }
+            return;
+        }
+
     </script>
 </body>
 </html>
