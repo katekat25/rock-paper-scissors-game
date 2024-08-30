@@ -7,17 +7,8 @@
 </head>
 <body>
     <script>
-        let humanScore = 0;
-        let computerScore = 0;
+        playGame();
 
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
-
-        console.log("Current score: You: " + humanScore + " CPU: " + computerScore);
-
-        console.log("Hello World");
         function getComputerChoice() {
             let randomNum = Math.floor(Math.random() * 100);
             //console.log("For debugging: the number I got was " + randomNum + " , by the way.");
@@ -45,23 +36,48 @@
         }
         //console.log(getHumanChoice());
 
-        function playRound(humanChoice, computerChoice) {
-            console.log("You picked " + humanChoice + ".");
-            console.log("The computer randomly picked " + computerChoice + ".");
-            if ((humanChoice === "rock" && computerChoice === "rock")
-            || (humanChoice === "paper" && computerChoice === "paper")
-            || (humanChoice === "scissors" && computerChoice === "scissors")) {
-                console.log("It's a tie, since " + humanChoice + " and " + computerChoice + " are the same.");
-            } else if ((humanChoice === "rock" && computerChoice === "paper")
-            || (humanChoice === "paper" && computerChoice === "scissors")
-            || (humanChoice === "scissors" && computerChoice === "rock")) {
-                console.log("You lost, because " + computerChoice + " beats " + humanChoice + ".");
-                computerScore++;
-            } else {
-                console.log("You win, because " + humanChoice + " beats " + computerChoice + "!");
-                humanScore++;
+
+        function playGame() {
+            console.log("You will play 5 rounds.");
+            let humanScore = 0;
+            let computerScore = 0;
+            let i = 0;
+
+            while (i < 5) {
+                console.log("Round " + (i + 1));
+                let humanSelection = getHumanChoice();
+                let computerSelection = getComputerChoice();
+                playRound(humanSelection, computerSelection);
+                console.log("Current score: You: " + humanScore + " CPU: " + computerScore);
+                i++;
             }
-            return;
+
+            if (humanScore > computerScore) {
+                console.log("You win!");
+            } else if (humanScore < computerScore) {
+                console.log("You lose...");
+            } else {
+                console.log("It's a tie!");
+            }
+
+            function playRound(humanChoice, computerChoice) {
+                console.log("You picked " + humanChoice + ".");
+                console.log("The computer randomly picked " + computerChoice + ".");
+                if ((humanChoice === "rock" && computerChoice === "rock")
+                || (humanChoice === "paper" && computerChoice === "paper")
+                || (humanChoice === "scissors" && computerChoice === "scissors")) {
+                    console.log("It's a tie, since " + humanChoice + " and " + computerChoice + " are the same.");
+                } else if ((humanChoice === "rock" && computerChoice === "paper")
+                || (humanChoice === "paper" && computerChoice === "scissors")
+                || (humanChoice === "scissors" && computerChoice === "rock")) {
+                    console.log("You lost, because " + computerChoice + " beats " + humanChoice + ".");
+                    computerScore++;
+                } else {
+                    console.log("You win, because " + humanChoice + " beats " + computerChoice + "!");
+                    humanScore++;
+                }
+                return;
+            }
         }
 
     </script>
