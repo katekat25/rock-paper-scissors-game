@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("Hello World");
+        function getComputerChoice() {
+            let randomNum = Math.floor(Math.random() * 100);
+            //console.log("For debugging: the number I got was " + randomNum + " , by the way.");
+            if (randomNum <= 33) {
+                return "rock";
+            } else if (randomNum <= 66) {
+                return "paper";
+            } else {
+                return "scissors";
+            }
+        }
+        //console.log(getComputerChoice());
+    </script>
+</body>
+</html>
