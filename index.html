@@ -14,8 +14,9 @@
             let humanScore = 0;
             let computerScore = 0;
             let roundCount = 0;
+            const maxRoundCount = 5;
 
-            while (roundCount < 5) {
+            while (roundCount < maxRoundCount) {
                 console.log("Round " + (roundCount + 1));
                 let humanSelection = getHumanChoice();
                 let computerSelection = getComputerChoice();
