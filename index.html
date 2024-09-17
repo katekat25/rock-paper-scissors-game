@@ -13,11 +13,9 @@
         playGame();
 
         function playGame() {
-            //console.log("You will play 5 rounds.");
             let humanScore = 0;
             let computerScore = 0;
             let roundCount = 0;
-            //const maxRoundCount = 5;
             const container = document.querySelector("body");
 
             const rockBtn = document.createElement("button");
@@ -30,17 +28,6 @@
             container.appendChild(rockBtn);
             container.appendChild(paperBtn);
             container.appendChild(scissorsBtn);
-
-            /*
-                while (roundCount < maxRoundCount) {
-                console.log("Round " + (roundCount + 1));
-                let humanSelection = getHumanChoice();
-                let computerSelection = getComputerChoice();
-                playRound(humanSelection, computerSelection);
-                console.log("Current score: You: " + humanScore + " CPU: " + computerScore);
-                roundCount++;
-            }
-            */
 
             const roundCountDisplay = document.createElement("div");
             rockBtn.addEventListener("click", () => {
@@ -79,14 +66,6 @@
                 container.removeChild(scissorsBtn);
             }
 
-            /*if (humanScore > computerScore) {
-                console.log("You win!");
-            } else if (humanScore < computerScore) {
-                console.log("You lose...");
-            } else {
-                console.log("It's a tie!");
-            }*/
-
             function getComputerChoice() {
                 let randomNum = Math.floor(Math.random() * 100);
                 if (randomNum <= 33) {
@@ -97,15 +76,6 @@
                     return "scissors";
                 }
             }
-
-            /*function getHumanChoice() {
-                let choice = prompt("Rock, paper, or scissors?").toLowerCase();
-                if (choice == "rock" || choice == "paper" || choice == "scissors") {
-                    return choice;
-                }
-                alert("You misspelled something. Please try again.");
-                return getHumanChoice();
-            }*/
 
             const youPicked = document.createElement("div");
             const computerPicked = document.createElement("div");
