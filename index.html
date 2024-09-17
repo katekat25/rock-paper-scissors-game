@@ -131,6 +131,8 @@
                     humanScore++;
                 }
                 container.appendChild(yourResult);
+                score.textContent = "Score: " + humanScore + " (You) " + computerScore + " (CPU)";
+                container.appendChild(score);
                 roundCount++;
                 return;
             }
