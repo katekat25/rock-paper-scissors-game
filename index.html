@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
+
         playGame();
 
         function playGame() {
-            console.log("You will play 5 rounds.");
+            //console.log("You will play 5 rounds.");
             let humanScore = 0;
             let computerScore = 0;
             let roundCount = 0;
-            const maxRoundCount = 5;
+            //const maxRoundCount = 5;
+            const container = document.querySelector("body");
 
-            while (roundCount < maxRoundCount) {
+            const rockBtn = document.createElement("button");
+            rockBtn.textContent = "Rock";
+            const paperBtn = document.createElement("button");
+            paperBtn.textContent = "Paper";
+            const scissorsBtn = document.createElement("button");
+            scissorsBtn.textContent = "Scissors";
+
+            container.appendChild(rockBtn);
+            container.appendChild(paperBtn);
+            container.appendChild(scissorsBtn);
+
+            /*
+                while (roundCount < maxRoundCount) {
                 console.log("Round " + (roundCount + 1));
                 let humanSelection = getHumanChoice();
                 let computerSelection = getComputerChoice();
@@ -24,14 +40,52 @@
                 console.log("Current score: You: " + humanScore + " CPU: " + computerScore);
                 roundCount++;
             }
+            */
 
-            if (humanScore > computerScore) {
+            const roundCountDisplay = document.createElement("div");
+            rockBtn.addEventListener("click", () => {
+                playRound("rock", getComputerChoice());
+                if (roundCount == 5) {
+                    announceWinner();
+                }
+            });
+
+            paperBtn.addEventListener("click", () => {
+                playRound("paper", getComputerChoice());
+                if (roundCount == 5) {
+                    announceWinner();
+                }
+            });
+
+            scissorsBtn.addEventListener("click", () => {
+                playRound("scissors", getComputerChoice());
+                if (roundCount == 5) {
+                    announceWinner();
+                }
+            });
+
+            function announceWinner() {
+                const winnerDisplay = document.createElement("div");
+                if (humanScore > computerScore) {
+                    winnerDisplay.textContent = "You win!";
+                } else if (humanScore < computerScore) {
+                    winnerDisplay.textContent = "You lose...";
+                } else {
+                    winnerDisplay.textContent = "It's a tie.";
+                }
+                container.appendChild(winnerDisplay);
+                container.removeChild(rockBtn);
+                container.removeChild(paperBtn);
+                container.removeChild(scissorsBtn);
+            }
+
+            /*if (humanScore > computerScore) {
                 console.log("You win!");
             } else if (humanScore < computerScore) {
                 console.log("You lose...");
             } else {
                 console.log("It's a tie!");
-            }
+            }*/
 
             function getComputerChoice() {
                 let randomNum = Math.floor(Math.random() * 100);
@@ -40,37 +94,49 @@
                 } else if (randomNum <= 66) {
                     return "paper";
                 } else {
-                 return "scissors";
-              }
+                    return "scissors";
+                }
             }
 
-            function getHumanChoice() {
+            /*function getHumanChoice() {
                 let choice = prompt("Rock, paper, or scissors?").toLowerCase();
                 if (choice == "rock" || choice == "paper" || choice == "scissors") {
                     return choice;
                 }
                 alert("You misspelled something. Please try again.");
                 return getHumanChoice();
-            }
+            }*/
+
+            const youPicked = document.createElement("div");
+            const computerPicked = document.createElement("div");
+            const yourResult = document.createElement("div");
+            const score = document.createElement("div");
 
             function playRound(humanChoice, computerChoice) {
-                console.log("You picked " + humanChoice + ".");
-                console.log("The computer randomly picked " + computerChoice + ".");
+                roundCountDisplay.textContent = "Current round: " + (roundCount + 1);
+                container.appendChild(roundCountDisplay);
+                youPicked.textContent = "You picked " + humanChoice + ".";
+                container.appendChild(youPicked);
+                computerPicked.textContent = "The computer randomly picked " + computerChoice + ".";
+                container.appendChild(computerPicked);
                 if (humanChoice === computerChoice) {
-                    console.log("It's a tie, since " + humanChoice + " and " + computerChoice + " are the same.");
+                    yourResult.textContent = "It's a tie, since " + humanChoice + " and " + computerChoice + " are the same.";
                 } else if ((humanChoice === "rock" && computerChoice === "paper")
-                || (humanChoice === "paper" && computerChoice === "scissors")
-                || (humanChoice === "scissors" && computerChoice === "rock")) {
-                    console.log("You lost, because " + computerChoice + " beats " + humanChoice + ".");
+                    || (humanChoice === "paper" && computerChoice === "scissors")
+                    || (humanChoice === "scissors" && computerChoice === "rock")) {
+                    yourResult.textContent = "You lost, because " + computerChoice + " beats " + humanChoice + ".";
                     computerScore++;
                 } else {
-                    console.log("You win, because " + humanChoice + " beats " + computerChoice + "!");
+                    yourResult.textContent = "You win, because " + humanChoice + " beats " + computerChoice + "!";
                     humanScore++;
                 }
+                container.appendChild(yourResult);
+                roundCount++;
                 return;
             }
         }
 
     </script>
 </body>
+
 </html>
